@@ -146,7 +146,8 @@ Replace `your-backend-ip-or-domain` with your deployed backend URL.
 1. **Clone the Backend Repository**
 
    ```bash
-   git clone https://github.com/yourusername/edufun-backend.git
+   git clone https://github.com/GIC-ITC/nakreansot-superapp-api.git
+   mv nakreansot-superapp-api edufun-backend
    cd edufun-backend
    ```
 
@@ -162,10 +163,10 @@ Replace `your-backend-ip-or-domain` with your deployed backend URL.
    ```
    DATABASE_HOST=localhost
    DATABASE_PORT=5432
-   DATABASE_USER=yourusername
-   DATABASE_PASS=yourpassword
+   DATABASE_USER=dice
+   DATABASE_PASS=dice
    DATABASE_NAME=edufun
-   JWT_SECRET=your_jwt_secret
+   JWT_SECRET=dicesecret
    REDIS_HOST=localhost
    REDIS_PORT=6379
    ```
