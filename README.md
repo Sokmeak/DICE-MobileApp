@@ -1,6 +1,6 @@
-Here's your **EduFunApp** project documentation formatted in **Markdown (.md)**:
 
-````markdown
+
+
 # EduFunApp 📱🎓  
 **"Engage, Learn, and Excel – All in Real-Time!"**
 
@@ -103,7 +103,6 @@ EduFunApp addresses these challenges by providing:
    ```bash
    git clone https://github.com/Sokmeak/DICE-MobileApp.git
    cd EduFunApp
-````
 
 2. **Install Dependencies**
 
