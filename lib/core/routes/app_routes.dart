@@ -1,0 +1,36 @@
+import 'package:flutter/material.dart';
+import 'package:product_dice/features/auth/screens/get_start_screen.dart';
+import 'package:product_dice/features/auth/screens/sign_in_screen.dart';
+import 'package:product_dice/features/auth/screens/sign_up_screen.dart';
+import 'package:product_dice/features/landing/screens/landing_screen.dart';
+
+Route createFadeRoute(Widget page) {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) => page,
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      return FadeTransition(
+        opacity: CurvedAnimation(
+          parent: animation,
+          curve: Curves.easeInOut,
+        ),
+        child: child,
+      );
+    },
+    transitionDuration: const Duration(milliseconds: 400),
+  );
+}
+
+Route<dynamic>? generateRoute(RouteSettings settings) {
+  switch (settings.name) {
+    case '/':
+      return createFadeRoute(const GetStartScreen());
+    case '/signin':
+      return createFadeRoute(const SignInScreen());
+    case '/signup':
+      return createFadeRoute(const SignUpScreen());
+    case '/landing':
+      return createFadeRoute(const LandingScreen());
+    default:
+      return null;
+  }
+}
