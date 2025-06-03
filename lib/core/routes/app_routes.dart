@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:product_dice/features/auth/screens/get_start_screen.dart';
 import 'package:product_dice/features/auth/screens/sign_in_screen.dart';
 import 'package:product_dice/features/auth/screens/sign_up_screen.dart';
+import 'package:product_dice/features/guidelines/screens/guideline_screen.dart';
 import 'package:product_dice/features/landing/screens/landing_screen.dart';
 
 Route createFadeRoute(Widget page) {
@@ -11,12 +12,12 @@ Route createFadeRoute(Widget page) {
       return FadeTransition(
         opacity: CurvedAnimation(
           parent: animation,
-          curve: Curves.easeInOut,
+          curve: Curves.easeInOutCubic,
         ),
         child: child,
       );
     },
-    transitionDuration: const Duration(milliseconds: 400),
+    transitionDuration: const Duration(milliseconds: 500),
   );
 }
 
@@ -30,6 +31,8 @@ Route<dynamic>? generateRoute(RouteSettings settings) {
       return createFadeRoute(const SignUpScreen());
     case '/landing':
       return createFadeRoute(const LandingScreen());
+    case '/guidelines':
+      return createFadeRoute(const GuidelineScreen());
     default:
       return null;
   }
