@@ -3,6 +3,7 @@ import 'dart:ui';
 class AppColors {
   // solid colors
   static const Color purple = Color(0xFF9333EA);
+  static const Color purpleSecondary = Color(0xFFF4ECFF);
   static const Color background = Color(0xFFF3F0F0);
   static const Color white = Color(0xFFFFFFFF);
   static const Color black = Color(0xFF000000);

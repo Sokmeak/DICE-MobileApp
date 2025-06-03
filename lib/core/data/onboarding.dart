@@ -1,35 +1,37 @@
-import 'package:product_dice/core/config/get_start_images.dart';
+import 'package:flutter/material.dart';
 
 class Onboarding {
   String title1;
-  String title2;
+  String? title2;
   String description;
-  String image;
+  IconData icons;
+
   Onboarding({
     required this.title1,
-    required this.title2,
+    this.title2,
     required this.description,
-    required this.image,
+    required this.icons,
   });
 }
 
 List<Onboarding> onboardingList = [
   Onboarding(
-      title1: 'Diverse ',
-      title2: 'and fresh food',
-      description:
-          'With an extensive menu prepared by talented chefs, fresh quality food.',
-      image: AppStartImages.getStartImage1),
+    title1: 'Create Engaging ',
+    title2: 'Quizzes',
+    description:
+        'Design beautiful quizzes with multiple-choice questions, images, and time limits.',
+    icons: Icons.create_rounded,
+  ),
   Onboarding(
-      title1: 'Easy to ',
-      title2: 'change dish ingredients',
+      title1: 'Host Live ',
+      title2: 'Games',
       description:
-          'You are a foodie, you can add or subtract ingredients in the dish.',
-      image: AppStartImages.getStartImage1),
+          'Invite players to join with a game code and compete in real-time.',
+      icons: Icons.people_alt_rounded),
   Onboarding(
-      title1: 'Delivery ',
-      title2: 'Is given on time',
+      title1: 'Track ',
+      title2: 'Performance',
       description:
-          'With an extensive menu prepared by talented chefs, fresh quality food.',
-      image: AppStartImages.getStartImage1)
+          'View detailed analytics and insights about quiz performance.',
+      icons: Icons.bar_chart_rounded),
 ];

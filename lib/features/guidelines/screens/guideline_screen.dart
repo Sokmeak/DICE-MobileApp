@@ -14,61 +14,96 @@ class GuidelineScreen extends StatefulWidget {
 }
 
 class _GuidelineScreenState extends State<GuidelineScreen> {
-  PageController pageController = PageController();
+  final PageController pageController = PageController();
   double currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
+    // Get screen size once for relative sizing
+    final size = MediaQuery.of(context).size;
+
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-        statusBarColor: Colors.transparent,
-        statusBarBrightness: Brightness.dark,
-        statusBarIconBrightness: Brightness.dark));
+      statusBarColor: Colors.transparent,
+      statusBarBrightness: Brightness.dark,
+      statusBarIconBrightness: Brightness.dark,
+    ));
 
     return Scaffold(
       backgroundColor: AppColors.background,
       body: SafeArea(
-        child: Column(
-          children: [
-            const SizedBox(height: 50),
-            Expanded(
-              flex: 3,
-              child: PageView.builder(
-                itemCount: onboardingList.length,
-                controller: pageController,
-                onPageChanged: (value) {
-                  setState(() {
-                    currentIndex = value.toDouble();
-                  });
-                },
-                itemBuilder: (context, index) {
-                  return OnBoardingCard(
-                    index: index,
-                    onBoarding: onboardingList[index],
-                  );
-                },
+        child: Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: size.width * 0.06,
+          ),
+          child: Column(
+            children: [
+              SizedBox(height: size.height * 0.06),
+              Expanded(
+                flex: 3,
+                child: PageView.builder(
+                  itemCount: onboardingList.length,
+                  controller: pageController,
+                  onPageChanged: (value) {
+                    setState(() {
+                      currentIndex = value.toDouble();
+                    });
+                  },
+                  itemBuilder: (context, index) {
+                    return OnBoardingCard(
+                      index: index,
+                      onBoarding: onboardingList[index],
+                    );
+                  },
+                ),
               ),
-            ),
-            CustomIndicator(position: currentIndex),
-            const SizedBox(height: 83),
-            CustomOutlinedButton(
-              width: 130,
-              height: 50,
-              borderRadius: 10,
-              onTap: () {
-                if (currentIndex == (onboardingList.length - 1)) {
-                } else {
-                  pageController.nextPage(
-                    duration: const Duration(milliseconds: 500),
-                    curve: Curves.ease,
-                  );
-                }
-              },
-              text: currentIndex == (onboardingList.length - 1)
-                  ? 'Get Started Now'
-                  : 'Next',
-            ),
-            const SizedBox(height: 20),
-          ],
+              SizedBox(height: size.height * 0.025),
+              CustomIndicator(position: currentIndex),
+              SizedBox(height: size.height * 0.05),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Expanded(
+                    flex: 4,
+                    child: CustomOutlinedButton(
+                      width: double.infinity,
+                      height: size.height *
+                          0.065, // button height relative to screen
+                      borderRadius: 10,
+                      gradientColors: AppColors.gradientColors,
+                      color: AppColors.white,
+                      onTap: () {
+                        if (currentIndex == (onboardingList.length - 1)) {
+                          Navigator.of(context).pushNamed('/signin');
+                        } else {
+                          pageController.nextPage(
+                            duration: const Duration(milliseconds: 500),
+                            curve: Curves.ease,
+                          );
+                        }
+                      },
+                      text: currentIndex == (onboardingList.length - 1)
+                          ? 'Get Started'
+                          : 'Next',
+                    ),
+                  ),
+                  SizedBox(width: size.width * 0.04),
+                  Expanded(
+                    flex: 4,
+                    child: CustomOutlinedButton(
+                      width: double.infinity,
+                      height: size.height * 0.065,
+                      borderRadius: 10,
+                      onTap: () {
+                        Navigator.of(context).pushNamed('/landing');
+                      },
+                      text: 'Skip',
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: size.height * 0.03),
+            ],
+          ),
         ),
       ),
     );

@@ -9,16 +9,21 @@ class CustomOutlinedButton extends StatefulWidget {
   final double? borderRadius;
   final double? fontSize;
   final Color? color;
+  final Color? backgroundColor;
+  final List<Color>? gradientColors;
 
-  const CustomOutlinedButton(
-      {super.key,
-      required this.onTap,
-      required this.text,
-      this.width,
-      this.height,
-      this.borderRadius,
-      this.fontSize,
-      this.color});
+  const CustomOutlinedButton({
+    super.key,
+    required this.onTap,
+    required this.text,
+    this.width,
+    this.height,
+    this.borderRadius,
+    this.fontSize,
+    this.color,
+    this.backgroundColor,
+    this.gradientColors,
+  });
 
   @override
   State<CustomOutlinedButton> createState() => _CustomOutlinedButtonState();
@@ -49,6 +54,13 @@ class _CustomOutlinedButtonState extends State<CustomOutlinedButton>
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+
+    final double defaultWidth = screenWidth * 0.85;
+    final double defaultHeight = screenWidth * 0.13;
+    final double defaultFontSize = screenWidth * 0.042;
+    final double defaultBorderRadius = screenWidth * 0.045;
+
     return GestureDetector(
       onTap: () {
         _controller.forward().then((_) {
@@ -71,21 +83,33 @@ class _CustomOutlinedButtonState extends State<CustomOutlinedButton>
             borderRadius: BorderRadius.circular(100),
           ),
           child: Container(
-            height: widget.height ?? 55,
+            height: widget.height ?? defaultHeight,
+            width: widget.width ?? defaultWidth,
             alignment: Alignment.center,
-            width: widget.width ?? double.maxFinite,
             decoration: BoxDecoration(
+              gradient: widget.gradientColors != null
+                  ? LinearGradient(
+                      colors: widget.gradientColors!,
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                    )
+                  : null,
+              color: widget.gradientColors == null
+                  ? widget.backgroundColor ?? Colors.transparent
+                  : null,
               border: Border.all(color: widget.color ?? AppColors.purple),
               borderRadius: BorderRadius.circular(
-                widget.borderRadius ?? 20,
+                widget.borderRadius ?? defaultBorderRadius,
               ),
             ),
             child: Text(
               widget.text,
               style: TextStyle(
-                  color: widget.color ?? AppColors.purple,
-                  fontSize: widget.fontSize ?? 15,
-                  fontWeight: FontWeight.w500),
+                color: widget.color ?? AppColors.purple,
+                fontSize: widget.fontSize ?? defaultFontSize,
+                fontWeight: FontWeight.w500,
+                fontFamily: 'poppins-normal',
+              ),
             ),
           ),
         ),

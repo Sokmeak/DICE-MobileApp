@@ -12,12 +12,12 @@ Route createFadeRoute(Widget page) {
       return FadeTransition(
         opacity: CurvedAnimation(
           parent: animation,
-          curve: Curves.easeInOut,
+          curve: Curves.easeInOutCubic,
         ),
         child: child,
       );
     },
-    transitionDuration: const Duration(milliseconds: 400),
+    transitionDuration: const Duration(milliseconds: 500),
   );
 }
 
