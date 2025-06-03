@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:product_dice/core/config/get_start_images.dart';
 import 'package:product_dice/features/discover/widgets/app_bar_discover.dart';
+import 'package:product_dice/features/home/screens/home_screen.dart';
 import 'package:product_dice/features/home/widgets/app_bar.dart';
 import 'package:product_dice/features/landing/widgets/bottom_nav.dart';
 
@@ -22,7 +23,7 @@ class _LandingScreenState extends State<LandingScreen> {
 
   // List of pages
   late final List<Widget> _pages = [
-    const Center(child: Text('Home Page')),
+    const HomeScreen(),
     const Center(child: Text('Discover Page')),
     const Center(child: Text('Create Page')),
     const Center(child: Text('My DICE Page')),
@@ -37,7 +38,7 @@ class _LandingScreenState extends State<LandingScreen> {
     PreferredSizeWidget appBar;
     if (_currentIndex == 1) {
       // Discover tab -> new custom AppBar
-      appBar = AppBarDiscover();
+      appBar = const AppBarDiscover();
     } else if (_currentIndex == 0) {
       // Default AppBarCustom
       appBar = AppBarCustom(

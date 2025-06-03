@@ -67,7 +67,7 @@ class _GuidelineScreenState extends State<GuidelineScreen> {
                     child: CustomOutlinedButton(
                       width: double.infinity,
                       height: size.height *
-                          0.065, // button height relative to screen
+                          0.055, // button height relative to screen
                       borderRadius: 10,
                       gradientColors: AppColors.gradientColors,
                       color: AppColors.white,
@@ -91,7 +91,7 @@ class _GuidelineScreenState extends State<GuidelineScreen> {
                     flex: 4,
                     child: CustomOutlinedButton(
                       width: double.infinity,
-                      height: size.height * 0.065,
+                      height: size.height * 0.055,
                       borderRadius: 10,
                       onTap: () {
                         Navigator.of(context).pushNamed('/landing');
