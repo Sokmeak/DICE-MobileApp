@@ -4,8 +4,8 @@ class ButtonCustom extends StatelessWidget {
   final String text;
   final Color color;
   final Color textColor;
-  final double width;
-  final double height;
+  final double? width;
+  final double? height;
   final double borderRadius;
   final Color? borderColor;
   final double borderWidth;
@@ -14,23 +14,23 @@ class ButtonCustom extends StatelessWidget {
   final VoidCallback onPressed;
   final IconData? leftIcon;
   final IconData? rightIcon;
-  final double iconSize;
-  final double fontSize;
+  final double? iconSize;
+  final double? fontSize;
   final List<Color>? gradientColors;
 
   const ButtonCustom({
     super.key,
     required this.text,
     required this.onPressed,
-    this.width = double.infinity,
-    this.height = 50,
+    this.width,
+    this.height,
     this.borderRadius = 20,
     this.color = const Color(0xFFEE6019),
     this.textColor = Colors.white,
     this.leftIcon,
     this.rightIcon,
-    this.iconSize = 20,
-    this.fontSize = 16,
+    this.iconSize,
+    this.fontSize,
     this.borderColor,
     this.borderWidth = 1.0,
     this.elevation = 4.0,
@@ -40,11 +40,19 @@ class ButtonCustom extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+
+    // Responsive fallback values
+    final resolvedWidth = width ?? screenWidth * 0.8;
+    final resolvedHeight = height ?? screenWidth * 0.12;
+    final resolvedFontSize = fontSize ?? screenWidth * 0.04;
+    final resolvedIconSize = iconSize ?? screenWidth * 0.05;
+
     return GestureDetector(
       onTap: onPressed,
       child: Container(
-        width: width,
-        height: height,
+        width: resolvedWidth,
+        height: resolvedHeight,
         decoration: BoxDecoration(
           gradient: gradientColors != null
               ? LinearGradient(
@@ -73,7 +81,7 @@ class ButtonCustom extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               if (leftIcon != null) ...[
-                Icon(leftIcon, color: textColor, size: iconSize),
+                Icon(leftIcon, color: textColor, size: resolvedIconSize),
                 const SizedBox(width: 8),
               ],
               Flexible(
@@ -82,7 +90,7 @@ class ButtonCustom extends StatelessWidget {
                   style: TextStyle(
                     color: textColor,
                     fontWeight: FontWeight.bold,
-                    fontSize: fontSize,
+                    fontSize: resolvedFontSize,
                     fontFamily: 'poppins-normal',
                   ),
                   overflow: TextOverflow.ellipsis,
@@ -90,7 +98,7 @@ class ButtonCustom extends StatelessWidget {
               ),
               if (rightIcon != null) ...[
                 const SizedBox(width: 8),
-                Icon(rightIcon, color: textColor, size: iconSize),
+                Icon(rightIcon, color: textColor, size: resolvedIconSize),
               ],
             ],
           ),

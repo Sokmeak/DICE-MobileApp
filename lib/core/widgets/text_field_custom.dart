@@ -13,6 +13,7 @@ class TextFieldCustom extends StatelessWidget {
   final Color? backgroundColor;
   final Widget? prefixIconWidget;
   final Widget? suffixIconWidget;
+  final String? Function(String?)? validator;
 
   const TextFieldCustom({
     super.key,
@@ -28,6 +29,7 @@ class TextFieldCustom extends StatelessWidget {
     this.backgroundColor,
     this.prefixIconWidget,
     this.suffixIconWidget,
+    this.validator,
   });
 
   @override
@@ -39,8 +41,9 @@ class TextFieldCustom extends StatelessWidget {
 
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10),
-      child: TextField(
+      child: TextFormField(
         controller: controller,
+        validator: validator,
         obscureText: isPassword,
         keyboardType: keyboardType,
         style: TextStyle(
