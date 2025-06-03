@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:product_dice/core/config/get_start_images.dart';
+import 'package:product_dice/features/discover/widgets/app_bar_discover.dart';
+import 'package:product_dice/features/home/widgets/app_bar.dart';
 import 'package:product_dice/features/landing/widgets/bottom_nav.dart';
 
 class LandingScreen extends StatefulWidget {
@@ -28,14 +30,30 @@ class _LandingScreenState extends State<LandingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // Get screen width
     final screenWidth = MediaQuery.of(context).size.width;
-
-    // Responsive FAB size (adjust these multipliers as you like)
     final fabSize = screenWidth * 0.13 * 1.4;
 
+    // Decide which AppBar to show
+    PreferredSizeWidget appBar;
+    if (_currentIndex == 1) {
+      // Discover tab -> new custom AppBar
+      appBar = AppBarDiscover();
+    } else if (_currentIndex == 0) {
+      // Default AppBarCustom
+      appBar = AppBarCustom(
+        iconAction: Icons.notifications_outlined,
+        onAvatarTap: () {},
+        imageLogo: const AssetImage(AppStartImages.logo),
+      );
+    } else {
+      // Fallback AppBar for other indices
+      appBar = AppBar(
+        title: const Text(''),
+      );
+    }
+
     return Scaffold(
-      appBar: AppBar(title: const Text('Landing Screen')),
+      appBar: appBar,
       body: _pages[_currentIndex],
       bottomNavigationBar: BottomNav(
         currentIndex: _currentIndex,
@@ -49,7 +67,9 @@ class _LandingScreenState extends State<LandingScreen> {
           color: Colors.transparent,
           child: InkWell(
             borderRadius: BorderRadius.circular(fabSize / 2),
-            onTap: () {},
+            onTap: () {
+              // Handle FAB tap
+            },
             child: Center(
               child: Padding(
                 padding: const EdgeInsets.all(2),
