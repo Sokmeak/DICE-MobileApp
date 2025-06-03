@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:product_dice/core/routes/app_routes.dart';
-import 'package:device_preview/device_preview.dart';
-import 'package:flutter/foundation.dart';
 
 void main() {
   runApp(const MyApp());
