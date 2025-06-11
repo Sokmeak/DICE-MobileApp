@@ -43,7 +43,9 @@ class _LandingScreenState extends State<LandingScreen> {
       // Default AppBarCustom
       appBar = AppBarCustom(
         iconAction: Icons.notifications_outlined,
-        onAvatarTap: () {},
+        onAvatarTap: () {
+          Navigator.pushNamed(context, '/profile');
+        },
         imageLogo: const AssetImage(AppStartImages.logo),
       );
     } else {
