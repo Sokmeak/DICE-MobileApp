@@ -4,6 +4,8 @@ import 'package:product_dice/features/auth/screens/sign_in_screen.dart';
 import 'package:product_dice/features/auth/screens/sign_up_screen.dart';
 import 'package:product_dice/features/guidelines/screens/guideline_screen.dart';
 import 'package:product_dice/features/landing/screens/landing_screen.dart';
+import 'package:product_dice/features/profile/screens/profile_screen.dart';
+import 'package:product_dice/features/setting/screens/setting_screen.dart';
 
 Route createFadeRoute(Widget page) {
   return PageRouteBuilder(
@@ -33,6 +35,10 @@ Route<dynamic>? generateRoute(RouteSettings settings) {
       return createFadeRoute(const LandingScreen());
     case '/guidelines':
       return createFadeRoute(const GuidelineScreen());
+    case '/profile':
+      return createFadeRoute(const ProfileScreen());
+    case '/setting':
+      return createFadeRoute(const SettingScreen());
     default:
       return null;
   }
