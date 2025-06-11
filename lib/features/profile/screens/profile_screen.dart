@@ -61,7 +61,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
             },
           );
         },
-        onSettingTap: () {},
+        onSettingTap: () {
+          Navigator.pushNamed(context, '/setting');
+        },
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(
