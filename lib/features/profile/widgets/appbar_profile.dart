@@ -14,11 +14,33 @@ class AppBarProfile extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: size.width * 0.02),
-      child: AppBar(
-        leading: Container(
-          margin: EdgeInsets.only(left: size.width * 0.02),
+    return AppBar(
+      leading: Container(
+        margin: EdgeInsets.only(left: size.width * 0.02),
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: const Color(0xFFE7E7E7),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.1),
+              offset: const Offset(0, 2),
+              blurRadius: 2,
+              spreadRadius: 1,
+            ),
+          ],
+        ),
+        child: IconButton(
+          icon: const Icon(Icons.arrow_back_ios_new_outlined),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          iconSize: size.height * 0.02,
+        ),
+      ),
+      title: Text(title ?? ''),
+      actions: [
+        Container(
+          margin: EdgeInsets.only(right: size.width * 0.02),
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             color: const Color(0xFFE7E7E7),
@@ -32,57 +54,32 @@ class AppBarProfile extends StatelessWidget implements PreferredSizeWidget {
             ],
           ),
           child: IconButton(
-            icon: const Icon(Icons.arrow_back_ios_new_outlined),
-            onPressed: () {
-              Navigator.pop(context);
-            },
+            icon: const Icon(Icons.edit),
+            onPressed: onEditTap,
             iconSize: size.height * 0.02,
           ),
         ),
-        title: Text(title ?? ''),
-        actions: [
-          Container(
-            margin: EdgeInsets.only(right: size.width * 0.02),
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: const Color(0xFFE7E7E7),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.1),
-                  offset: const Offset(0, 2),
-                  blurRadius: 2,
-                  spreadRadius: 1,
-                ),
-              ],
-            ),
-            child: IconButton(
-              icon: const Icon(Icons.edit),
-              onPressed: onEditTap,
-              iconSize: size.height * 0.02,
-            ),
+        Container(
+          margin: EdgeInsets.only(right: size.width * 0.02),
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: const Color(0xFFE7E7E7),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.1),
+                offset: const Offset(0, 2),
+                blurRadius: 2,
+                spreadRadius: 1,
+              ),
+            ],
           ),
-          Container(
-            margin: EdgeInsets.only(right: size.width * 0.02),
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: const Color(0xFFE7E7E7),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.1),
-                  offset: const Offset(0, 2),
-                  blurRadius: 2,
-                  spreadRadius: 1,
-                ),
-              ],
-            ),
-            child: IconButton(
-              icon: const Icon(Icons.settings),
-              onPressed: onSettingTap,
-              iconSize: size.height * 0.02,
-            ),
+          child: IconButton(
+            icon: const Icon(Icons.settings),
+            onPressed: onSettingTap,
+            iconSize: size.height * 0.02,
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
