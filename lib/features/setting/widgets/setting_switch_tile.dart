@@ -18,6 +18,7 @@ class SettingSwitchTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final textScale = size.width / 375;
 
     return Column(
       children: [
@@ -27,11 +28,14 @@ class SettingSwitchTile extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  title,
-                  style: TextStyle(
-                    fontSize: size.height * 0.018,
-                    fontFamily: 'poppins-normal',
+                Flexible(
+                  child: Text(
+                    title,
+                    style: TextStyle(
+                      fontSize: size.height * 0.018 * textScale,
+                      fontFamily: 'poppins-normal',
+                    ),
+                    overflow: TextOverflow.ellipsis,
                   ),
                 ),
                 Switch(

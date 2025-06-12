@@ -5,6 +5,8 @@ import 'package:product_dice/features/auth/screens/sign_up_screen.dart';
 import 'package:product_dice/features/guidelines/screens/guideline_screen.dart';
 import 'package:product_dice/features/landing/screens/landing_screen.dart';
 import 'package:product_dice/features/profile/screens/profile_screen.dart';
+import 'package:product_dice/features/setting/screens/privacy_setting_screen.dart';
+import 'package:product_dice/features/setting/screens/profile_setting_screen.dart';
 import 'package:product_dice/features/setting/screens/setting_screen.dart';
 
 Route createFadeRoute(Widget page) {
@@ -39,6 +41,10 @@ Route<dynamic>? generateRoute(RouteSettings settings) {
       return createFadeRoute(const ProfileScreen());
     case '/setting':
       return createFadeRoute(const SettingScreen());
+    case '/profile-settings':
+      return createFadeRoute(const ProfileSettingScreen());
+    case '/privacy-settings':
+      return createFadeRoute(const PrivacySettingScreen());
     default:
       return null;
   }
