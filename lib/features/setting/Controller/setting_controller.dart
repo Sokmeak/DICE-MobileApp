@@ -10,28 +10,7 @@ class SettingController {
         Navigator.pushNamed(context, '/privacy-settings');
         break;
       case 'Delete Account':
-        showDialog(
-          context: context,
-          builder: (_) => AlertDialog(
-            title: const Text('Delete Account'),
-            content:
-                const Text('Are you sure you want to delete your account?'),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.pop(context),
-                child: const Text('Cancel'),
-              ),
-              TextButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                  // Handle delete logic
-                },
-                child:
-                    const Text('Delete', style: TextStyle(color: Colors.red)),
-              ),
-            ],
-          ),
-        );
+        Navigator.pushNamed(context, '/delete-account');
         break;
       case 'Log Out':
         showDialog(

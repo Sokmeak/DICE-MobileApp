@@ -5,9 +5,15 @@ import 'package:product_dice/features/auth/screens/sign_up_screen.dart';
 import 'package:product_dice/features/guidelines/screens/guideline_screen.dart';
 import 'package:product_dice/features/landing/screens/landing_screen.dart';
 import 'package:product_dice/features/profile/screens/profile_screen.dart';
+import 'package:product_dice/features/setting/screens/delete_account_screen.dart';
+import 'package:product_dice/features/setting/screens/faq_screen.dart';
+import 'package:product_dice/features/setting/screens/language_screen.dart';
+import 'package:product_dice/features/setting/screens/privacy_policy_screen.dart';
 import 'package:product_dice/features/setting/screens/privacy_setting_screen.dart';
 import 'package:product_dice/features/setting/screens/profile_setting_screen.dart';
 import 'package:product_dice/features/setting/screens/setting_screen.dart';
+import 'package:product_dice/features/setting/screens/terms_condition_screen.dart';
+import 'package:product_dice/features/setting/screens/user_type_screen.dart';
 
 Route createFadeRoute(Widget page) {
   return PageRouteBuilder(
@@ -45,6 +51,18 @@ Route<dynamic>? generateRoute(RouteSettings settings) {
       return createFadeRoute(const ProfileSettingScreen());
     case '/privacy-settings':
       return createFadeRoute(const PrivacySettingScreen());
+    case '/delete-account':
+      return createFadeRoute(const DeleteAccountScreen());
+    case '/language':
+      return createFadeRoute(const LanguageScreen());
+    case '/faq':
+      return createFadeRoute(const FaqScreen());
+    case '/terms':
+      return createFadeRoute(const TermsConditionScreen());
+    case '/privacy':
+      return createFadeRoute(const PrivacyPolicyScreen());
+    case '/user-type':
+      return createFadeRoute(const UserTypeScreen());
     default:
       return null;
   }

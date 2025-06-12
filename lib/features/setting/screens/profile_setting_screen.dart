@@ -1,3 +1,4 @@
+import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:product_dice/core/theme/colors.dart';
 import 'package:product_dice/core/widgets/button_custom.dart';
@@ -93,7 +94,7 @@ class _ProfileSettingScreenState extends State<ProfileSettingScreen> {
                           TextFieldCustom(
                             hintText: 'Username',
                             controller: _usernameController,
-                            label: '',
+                            label: 'Username',
                             prefixIconWidget: Icon(
                               Icons.person_rounded,
                               color: AppColors.grey,
@@ -119,7 +120,7 @@ class _ProfileSettingScreenState extends State<ProfileSettingScreen> {
                           TextFieldCustom(
                             hintText: 'Name',
                             controller: _nameController,
-                            label: '',
+                            label: 'Name',
                             prefixIconWidget: Icon(
                               Icons.person_rounded,
                               color: AppColors.grey,
@@ -145,7 +146,7 @@ class _ProfileSettingScreenState extends State<ProfileSettingScreen> {
                           TextFieldCustom(
                             hintText: 'Email',
                             controller: _emailController,
-                            label: '',
+                            label: 'Email',
                             prefixIconWidget: Icon(
                               Icons.email_rounded,
                               color: AppColors.grey,
@@ -171,7 +172,7 @@ class _ProfileSettingScreenState extends State<ProfileSettingScreen> {
                           TextFieldCustom(
                             hintText: 'Password',
                             controller: _passwordController,
-                            label: '',
+                            label: 'Password',
                             prefixIconWidget: Icon(
                               Icons.password_rounded,
                               color: AppColors.grey,
@@ -204,10 +205,28 @@ class _ProfileSettingScreenState extends State<ProfileSettingScreen> {
               SizedBox(height: size.height * 0.02),
               ButtonCustom(
                 text: 'Save',
-                onPressed: () {},
+                onPressed: () {
+                  Flushbar(
+                    message: 'Changes saved successfully!',
+                    backgroundColor: Colors.greenAccent[700]!,
+                    duration: const Duration(seconds: 2),
+                    flushbarPosition: FlushbarPosition.TOP,
+                    margin: const EdgeInsets.all(10),
+                    borderRadius: BorderRadius.circular(8),
+                    animationDuration: const Duration(milliseconds: 300),
+                    messageText: const Text(
+                      'Changes saved successfully!',
+                      style: TextStyle(
+                        fontFamily: 'poppins-medium',
+                        color: Colors.white,
+                        fontSize: 16,
+                      ),
+                    ),
+                  ).show(context);
+                },
                 gradientColors: AppColors.gradientColors,
                 borderRadius: 10,
-              )
+              ),
             ],
           ),
         ),

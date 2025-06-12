@@ -186,7 +186,7 @@ class _SettingScreenState extends State<SettingScreen> {
                       title: 'FAQ',
                       showDivider: false,
                       onTap: () {
-                        Navigator.pushNamed(context, '/FAQ');
+                        Navigator.pushNamed(context, '/faq');
                       },
                     ),
                   ],
@@ -267,7 +267,7 @@ class _SettingScreenState extends State<SettingScreen> {
                       title: 'Student',
                       showDivider: false,
                       onTap: () {
-                        Navigator.pushNamed(context, '/student');
+                        Navigator.pushNamed(context, '/user-type');
                       },
                     ),
                   ],

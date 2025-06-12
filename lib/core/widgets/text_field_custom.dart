@@ -55,11 +55,13 @@ class TextFieldCustom extends StatelessWidget {
           labelStyle: TextStyle(
             color: textColor,
             fontFamily: 'poppins-normal',
+            fontSize: 16,
           ),
           hintText: hintText,
           hintStyle: TextStyle(
             color: hintColor,
             fontFamily: 'poppins-normal',
+            fontSize: 14,
           ),
           prefixIcon: prefixIconWidget ??
               (prefixIcon != null ? Icon(prefixIcon, color: textColor) : null),
