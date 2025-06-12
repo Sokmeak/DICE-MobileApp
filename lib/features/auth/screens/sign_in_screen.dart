@@ -129,7 +129,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
                     // Form is valid
-                    Navigator.of(context).pushNamed('/landing');
+                    Navigator.of(context).pushNamed('/guidelines');
                   } else {
                     // Invalid fields will show error
                     ScaffoldMessenger.of(context).showSnackBar(
@@ -142,13 +142,16 @@ class _SignInScreenState extends State<SignInScreen> {
               ),
 
               const SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+              Wrap(
+                alignment: WrapAlignment.center,
+                crossAxisAlignment: WrapCrossAlignment.center,
+                spacing: 5,
                 children: [
-                  const Text(
+                  Text(
                     'Don\'t have an account?',
                     style: TextStyle(
-                      fontSize: 16,
+                      fontSize: MediaQuery.of(context).size.width *
+                          0.04, // responsive font
                       color: AppColors.grey,
                       fontFamily: 'poppins-normal',
                     ),
@@ -157,10 +160,11 @@ class _SignInScreenState extends State<SignInScreen> {
                     onPressed: () {
                       Navigator.of(context).pushNamed('/signup');
                     },
-                    child: const Text(
+                    child: Text(
                       'Sign Up',
                       style: TextStyle(
-                        fontSize: 16,
+                        fontSize: MediaQuery.of(context).size.width *
+                            0.04, // responsive font
                         color: AppColors.purple,
                         fontFamily: 'poppins-normal',
                       ),
@@ -168,6 +172,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   ),
                 ],
               ),
+
               const SizedBox(height: 20),
               TextButton(
                 onPressed: () {

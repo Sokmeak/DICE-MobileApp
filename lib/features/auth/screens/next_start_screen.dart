@@ -101,7 +101,7 @@ class NextStartScreen extends StatelessWidget {
                       borderColor: AppColors.purple,
                       borderWidth: 1,
                       onPressed: () {
-                        Navigator.of(context).pushNamed('/signin');
+                        Navigator.of(context).pushNamed('/guidelines');
                       },
                     ),
                   ),
