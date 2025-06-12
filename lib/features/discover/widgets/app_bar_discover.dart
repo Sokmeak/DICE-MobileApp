@@ -91,7 +91,7 @@ class _AppBarDiscoverState extends State<AppBarDiscover> {
                             ],
                             if (!isSmallScreen)
                               Text(
-                                lang.label,
+                                lang.label ?? '',
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: isMediumScreen ? 14 : 16,
