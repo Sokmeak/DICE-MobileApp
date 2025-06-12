@@ -48,7 +48,7 @@ class SettingController {
                 onPressed: () {
                   Navigator.pop(context);
                   // Handle logout logic
-                  Navigator.pushReplacementNamed(context, '/login');
+                  Navigator.pushReplacementNamed(context, '/signin');
                 },
                 child:
                     const Text('Log Out', style: TextStyle(color: Colors.red)),
