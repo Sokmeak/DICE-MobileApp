@@ -4,6 +4,7 @@ import 'package:product_dice/features/discover/widgets/app_bar_discover.dart';
 import 'package:product_dice/features/home/screens/home_screen.dart';
 import 'package:product_dice/features/home/widgets/app_bar.dart';
 import 'package:product_dice/features/landing/widgets/bottom_nav.dart';
+import 'package:product_dice/features/createquiz/screens/create_quiz_screen.dart';
 
 class LandingScreen extends StatefulWidget {
   const LandingScreen({super.key});
@@ -16,16 +17,51 @@ class _LandingScreenState extends State<LandingScreen> {
   int _currentIndex = 0;
 
   void _onTap(int index) {
-    setState(() {
-      _currentIndex = index;
-    });
+    if (index == 2) {
+      // Navigate to CreateQuiz screen when index 2 is tapped
+      _navigateToCreateQuiz();
+    } else {
+      setState(() {
+        _currentIndex = index;
+      });
+    }
+  }
+
+  // Navigation method to CreateQuizScreen
+  void _navigateToCreateQuiz() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const CreateQuizScreen(),
+      ),
+    );
   }
 
   // List of pages
   late final List<Widget> _pages = [
     const HomeScreen(),
     const Center(child: Text('Discover Page')),
-    const Center(child: Text('Create Page')),
+    const SizedBox.shrink(), // Empty widget since we navigate away immediately
+    // Center(
+    //   child: ElevatedButton(
+    //     onPressed: _navigateToCreateQuiz,
+    //     style: ElevatedButton.styleFrom(
+    //       backgroundColor: const Color(0xFF8B5CF6),
+    //       padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+    //       shape: RoundedRectangleBorder(
+    //         borderRadius: BorderRadius.circular(12),
+    //       ),
+    //     ),
+    //     child: const Text(
+    //       'Create New Quiz',
+    //       style: TextStyle(
+    //         color: Colors.white,
+    //         fontSize: 16,
+    //         fontWeight: FontWeight.w600,
+    //       ),
+    //     ),
+    //   ),
+    // ),
     const Center(child: Text('My DICE Page')),
   ];
 

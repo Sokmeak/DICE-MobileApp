@@ -37,10 +37,13 @@ dependencies:
   cupertino_icons: ^1.0.6
   animate_do: ^4.2.0
   flutter_svg: ^2.1.0
+  uuid: ^4.5.1
+  image_picker: ^1.0.0
   smooth_page_indicator: ^1.2.1
   carousel_slider: ^5.0.0
   shimmer: ^3.0.0
   dotted_border: ^2.1.0
+
 
 dev_dependencies:
   flutter_test:
