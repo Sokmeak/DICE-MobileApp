@@ -36,6 +36,8 @@ dependencies:
   cupertino_icons: ^1.0.6
   animate_do: ^4.2.0
   flutter_svg: ^2.1.0
+  uuid: ^4.5.1
+  image_picker: ^1.0.0
 
 dev_dependencies:
   flutter_test:
