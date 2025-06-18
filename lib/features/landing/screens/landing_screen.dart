@@ -5,6 +5,7 @@ import 'package:product_dice/features/home/screens/home_screen.dart';
 import 'package:product_dice/features/home/widgets/app_bar.dart';
 import 'package:product_dice/features/landing/widgets/bottom_nav.dart';
 import 'package:product_dice/features/createquiz/screens/create_quiz_screen.dart';
+import 'package:product_dice/features/mydice/screens/my_dice_screen.dart';
 
 class LandingScreen extends StatefulWidget {
   const LandingScreen({super.key});
@@ -62,16 +63,14 @@ class _LandingScreenState extends State<LandingScreen> {
     //     ),
     //   ),
     // ),
-    const Center(child: Text('My DICE Page')),
+    const MyDiceScreen(),
   ];
 
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
-    final fabSize = screenWidth * 0.13 * 1.4;
-
-    // Decide which AppBar to show
-    PreferredSizeWidget appBar;
+    final fabSize = screenWidth * 0.13 * 1.4; // Decide which AppBar to show
+    PreferredSizeWidget? appBar;
     if (_currentIndex == 1) {
       // Discover tab -> new custom AppBar
       appBar = const AppBarDiscover();
@@ -84,6 +83,9 @@ class _LandingScreenState extends State<LandingScreen> {
         },
         imageLogo: const AssetImage(AppStartImages.logo),
       );
+    } else if (_currentIndex == 3) {
+      // My DICE tab -> no AppBar (it has its own custom AppBar)
+      appBar = null;
     } else {
       // Fallback AppBar for other indices
       appBar = AppBar(
