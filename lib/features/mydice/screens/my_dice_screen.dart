@@ -24,7 +24,8 @@ class _MyDiceScreenState extends State<MyDiceScreen> {
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () => Navigator.pop(context),
+          onPressed: () => Navigator.pushNamedAndRemoveUntil(
+              context, '/landing', (route) => false),
         ),
         title: const Text(
           'DICE',
@@ -65,6 +66,7 @@ class _MyDiceScreenState extends State<MyDiceScreen> {
                   TextButton(
                     onPressed: () {
                       // Navigate to see all recent quizzes
+                      Navigator.pushNamed(context, '/all-dice');
                     },
                     child: Text(
                       'See all',
@@ -107,6 +109,7 @@ class _MyDiceScreenState extends State<MyDiceScreen> {
                 iconColor: AppColors.purple,
                 onTap: () {
                   // Navigate to Your DICE
+                  Navigator.pushNamed(context, '/all-dice');
                 },
               ),
               SizedBox(height: height * 0.01),

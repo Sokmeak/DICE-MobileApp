@@ -14,6 +14,8 @@ import 'package:product_dice/features/setting/screens/profile_setting_screen.dar
 import 'package:product_dice/features/setting/screens/setting_screen.dart';
 import 'package:product_dice/features/setting/screens/terms_condition_screen.dart';
 import 'package:product_dice/features/setting/screens/user_type_screen.dart';
+import 'package:product_dice/features/mydice/screens/all_dice_screen.dart';
+import 'package:product_dice/features/createquiz/screens/create_quiz_screen.dart';
 
 Route createFadeRoute(Widget page) {
   return PageRouteBuilder(
@@ -63,6 +65,10 @@ Route<dynamic>? generateRoute(RouteSettings settings) {
       return createFadeRoute(const PrivacyPolicyScreen());
     case '/user-type':
       return createFadeRoute(const UserTypeScreen());
+    case '/all-dice':
+      return createFadeRoute(const AllDiceScreen());
+    case '/create-quiz':
+      return createFadeRoute(const CreateQuizScreen());
     default:
       return null;
   }
