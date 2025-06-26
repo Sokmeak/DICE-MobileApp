@@ -1,17 +1,21 @@
-import 'dart:ui';
+import 'package:flutter/material.dart';
 
 class AppColors {
-  // solid colors
-  static const Color purple = Color(0xFF9333EA);
-  static const Color purpleSecondary = Color(0xFFF4ECFF);
-  static const Color background = Color(0xFFF3F0F0);
-  static const Color white = Color(0xFFFFFFFF);
-  static const Color black = Color(0xFF000000);
-  static const Color grey = Color(0xFF8E8E93);
+  static const Color primary = Color(0xFF8A2BE2);
+  static const Color secondary = Color(0xFF4B0082);
+  static const Color background = Color(0xFFF5F5F5);
+  static const Color text = Color(0xFF333333);
+  static const Color white = Colors.white;
+  static const Color black = Colors.black;
+  static const Color grey = Colors.grey;
+  static const Color red = Colors.red;
+  static const Color green = Colors.green;
 
-  // gradient linear colors
-  static const List<Color> gradientColors = [
-    Color(0xFF9333EA),
-    Color(0xFFDB2777),
-  ];
+  static const Color skyBlue = Color(0xFF00BFFF);
+
+  static const LinearGradient primaryGradient = LinearGradient(
+    colors: [primary, secondary],
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+  );
 }

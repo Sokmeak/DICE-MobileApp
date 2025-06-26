@@ -1,0 +1,2 @@
+D:/MobileDiceProject/DICE-MobileApp/android/app/.cxx/Debug/w156tvj6/x86_64/CMakeFiles/edit_cache.dir
+D:/MobileDiceProject/DICE-MobileApp/android/app/.cxx/Debug/w156tvj6/x86_64/CMakeFiles/rebuild_cache.dir

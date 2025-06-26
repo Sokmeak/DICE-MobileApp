@@ -4,7 +4,7 @@ import 'package:product_dice/core/theme/colors.dart';
 
 class DiceQuizCard extends StatelessWidget {
   final MyDiceData data;
-  final VoidCallback? onTap;
+  final VoidCallback? onTap; // For tapping the card to see details
 
   const DiceQuizCard({
     super.key,
@@ -14,14 +14,11 @@ class DiceQuizCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-    final width = size.width;
-    final height = size.height;
-
+    // Using fixed padding/margins for more predictable UI than MediaQuery
     return Container(
-      margin: EdgeInsets.symmetric(
-        horizontal: width * 0.04,
-        vertical: height * 0.008,
+      margin: const EdgeInsets.symmetric(
+        horizontal: 16.0,
+        vertical: 8.0,
       ),
       decoration: BoxDecoration(
         color: Colors.white,
@@ -29,116 +26,110 @@ class DiceQuizCard extends StatelessWidget {
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.05),
-            offset: const Offset(0, 2),
+            offset: const Offset(0, 4),
             blurRadius: 8,
-            spreadRadius: 0,
           ),
         ],
       ),
-      child: InkWell(
-        onTap: onTap,
-        borderRadius: BorderRadius.circular(12),
-        child: Padding(
-          padding: EdgeInsets.all(width * 0.03),
-          child: Row(
-            children: [
-              // Quiz image
-              Container(
-                width: width * 0.2,
-                height: width * 0.2,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                  image: DecorationImage(
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          onTap: onTap, // Main tap for details
+          borderRadius: BorderRadius.circular(12),
+          child: Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Row(
+              children: [
+                // Quiz image
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(8.0),
+                  child: Image(
                     image: data.image,
+                    width: 80,
+                    height: 80,
                     fit: BoxFit.cover,
                   ),
                 ),
-              ),
 
-              SizedBox(width: width * 0.04),
+                const SizedBox(width: 16),
 
-              // Quiz content
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    // Title and question count
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Expanded(
-                          child: Text(
-                            '${data.totalQuestion.toInt()} - ${data.title}',
-                            style: TextStyle(
-                              fontSize: width * 0.04,
-                              fontWeight: FontWeight.w600,
-                              fontFamily: 'Poppins',
-                              color: Colors.black87,
-                            ),
-                            overflow: TextOverflow.ellipsis,
-                          ),
+                // Quiz content
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // Title
+                      Text(
+                        data.title,
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                          fontFamily: 'Poppins',
+                          color: Colors.black87,
                         ),
-                        // Dropdown/menu icon
-                        Icon(
-                          Icons.keyboard_arrow_down,
-                          color: Colors.grey[600],
-                          size: width * 0.06,
-                        ),
-                      ],
-                    ),
-
-                    SizedBox(height: height * 0.005),
-
-                    // Status indicator
-                    Container(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: width * 0.025,
-                        vertical: height * 0.003,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
                       ),
-                      decoration: BoxDecoration(
-                        color: data.status == 'Draft'
-                            ? Colors.orange.withOpacity(0.1)
-                            : Colors.green.withOpacity(0.1),
-                        borderRadius: BorderRadius.circular(4),
-                      ),
-                      child: Text(
-                        data.status,
+
+                      const SizedBox(height: 4),
+
+                      // Question Count
+                      Text(
+                        '${data.totalQuestion.toInt()} Questions',
                         style: TextStyle(
-                          color: data.status == 'Draft'
-                              ? Colors.orange[700]
-                              : Colors.green[700],
-                          fontSize: width * 0.03,
-                          fontWeight: FontWeight.w500,
+                          fontSize: 12,
+                          color: Colors.grey[600],
                           fontFamily: 'Poppins',
                         ),
                       ),
-                    ),
 
-                    SizedBox(height: height * 0.01),
+                      const SizedBox(height: 8),
 
-                    // Progress bar (if needed)
-                    if (!data.isCompleted)
+                      // Status indicator
                       Container(
-                        height: 3,
-                        decoration: BoxDecoration(
-                          color: Colors.grey[300],
-                          borderRadius: BorderRadius.circular(2),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 8,
+                          vertical: 4,
                         ),
-                        child: FractionallySizedBox(
-                          alignment: Alignment.centerLeft,
-                          widthFactor: 0.6, // 60% progress as example
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: AppColors.purple,
-                              borderRadius: BorderRadius.circular(2),
-                            ),
+                        decoration: BoxDecoration(
+                          color: data.status == 'Draft'
+                              ? Colors.orange.withOpacity(0.1)
+                              : Colors.green.withOpacity(0.1),
+                          borderRadius: BorderRadius.circular(6),
+                        ),
+                        child: Text(
+                          data.status,
+                          style: TextStyle(
+                            color: data.status == 'Draft'
+                                ? Colors.orange[800]
+                                : Colors.green[800],
+                            fontSize: 10,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: 'Poppins',
                           ),
                         ),
                       ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-            ],
+
+                // Play Button - Integrated from the other version
+                ElevatedButton(
+                  onPressed: () {
+                    // This navigation starts the quiz playing flow
+                    Navigator.pushNamed(context, '/join_quiz', arguments: data);
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColors.primary,
+                    foregroundColor: Colors.white,
+                    shape: const CircleBorder(),
+                    padding: const EdgeInsets.all(12),
+                    elevation: 2,
+                  ),
+                  child: const Icon(Icons.play_arrow_rounded),
+                ),
+              ],
+            ),
           ),
         ),
       ),
