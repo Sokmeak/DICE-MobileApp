@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:product_dice/core/config/get_start_images.dart';
+import 'package:product_dice/features/discover/screens/discover_screen.dart'; // Add this import
 import 'package:product_dice/features/discover/widgets/app_bar_discover.dart';
 import 'package:product_dice/features/home/screens/home_screen.dart';
 import 'package:product_dice/features/home/widgets/app_bar.dart';
@@ -41,60 +42,44 @@ class _LandingScreenState extends State<LandingScreen> {
   // List of pages
   late final List<Widget> _pages = [
     const HomeScreen(),
-    const Center(child: Text('Discover Page')),
+    const DiscoverScreen(), // Replace placeholder with actual DiscoverScreen
     const SizedBox.shrink(), // Empty widget since we navigate away immediately
-    // Center(
-    //   child: ElevatedButton(
-    //     onPressed: _navigateToCreateQuiz,
-    //     style: ElevatedButton.styleFrom(
-    //       backgroundColor: const Color(0xFF8B5CF6),
-    //       padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
-    //       shape: RoundedRectangleBorder(
-    //         borderRadius: BorderRadius.circular(12),
-    //       ),
-    //     ),
-    //     child: const Text(
-    //       'Create New Quiz',
-    //       style: TextStyle(
-    //         color: Colors.white,
-    //         fontSize: 16,
-    //         fontWeight: FontWeight.w600,
-    //       ),
-    //     ),
-    //   ),
-    // ),
     const MyDiceScreen(),
   ];
+
+  // Method to build appropriate AppBar based on current index
+  PreferredSizeWidget? _buildAppBar() {
+    switch (_currentIndex) {
+      case 0:
+        // Home tab
+        return AppBarCustom(
+          iconAction: Icons.notifications_outlined,
+          onAvatarTap: () {
+            Navigator.pushNamed(context, '/profile');
+          },
+          imageLogo: const AssetImage(AppStartImages.logo),
+        );
+      case 1:
+        // Discover tab - no AppBar here since DiscoverScreen has its own
+        return null;
+      case 3:
+        // My DICE tab - no AppBar since it has its own custom AppBar
+        return null;
+      default:
+        // Fallback AppBar for other indices
+        return AppBar(
+          title: const Text(''),
+        );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
-    final fabSize = screenWidth * 0.13 * 1.4; // Decide which AppBar to show
-    PreferredSizeWidget? appBar;
-    if (_currentIndex == 1) {
-      // Discover tab -> new custom AppBar
-      appBar = const AppBarDiscover();
-    } else if (_currentIndex == 0) {
-      // Default AppBarCustom
-      appBar = AppBarCustom(
-        iconAction: Icons.notifications_outlined,
-        onAvatarTap: () {
-          Navigator.pushNamed(context, '/profile');
-        },
-        imageLogo: const AssetImage(AppStartImages.logo),
-      );
-    } else if (_currentIndex == 3) {
-      // My DICE tab -> no AppBar (it has its own custom AppBar)
-      appBar = null;
-    } else {
-      // Fallback AppBar for other indices
-      appBar = AppBar(
-        title: const Text(''),
-      );
-    }
+    final fabSize = screenWidth * 0.13 * 1.4;
 
     return Scaffold(
-      appBar: appBar,
+      appBar: _buildAppBar(),
       body: _pages[_currentIndex],
       bottomNavigationBar: BottomNav(
         currentIndex: _currentIndex,
@@ -109,7 +94,8 @@ class _LandingScreenState extends State<LandingScreen> {
           child: InkWell(
             borderRadius: BorderRadius.circular(fabSize / 2),
             onTap: () {
-              // Handle FAB tap
+              // Handle FAB tap - maybe join a quiz or show join dialog
+              _handleJoinAction();
             },
             child: Center(
               child: Padding(
@@ -122,6 +108,32 @@ class _LandingScreenState extends State<LandingScreen> {
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  // Handle floating action button tap
+  void _handleJoinAction() {
+    // TODO: Implement join functionality
+    // This could show a dialog to enter a quiz code, or navigate to a join screen
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Join Quiz'),
+        content: const Text('Enter quiz code to join'),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('Cancel'),
+          ),
+          TextButton(
+            onPressed: () {
+              // TODO: Implement join logic
+              Navigator.pop(context);
+            },
+            child: const Text('Join'),
+          ),
+        ],
       ),
     );
   }
