@@ -92,13 +92,13 @@ class NextStartScreen extends StatelessWidget {
                     child: ButtonCustom(
                       text: 'Get Started',
                       color: AppColors.white,
-                      textColor: AppColors.purple,
+                      textColor: AppColors.blue,
                       width: double.infinity,
                       height: 40,
                       borderRadius: 10,
                       rightIcon: Icons.arrow_forward_ios_rounded,
                       fontSize: 14,
-                      borderColor: AppColors.purple,
+                      borderColor: AppColors.blue,
                       borderWidth: 1,
                       onPressed: () {
                         Navigator.of(context).pushNamed('/guidelines');

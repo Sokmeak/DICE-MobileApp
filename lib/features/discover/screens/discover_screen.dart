@@ -108,7 +108,7 @@ class _DiscoverScreenState extends State<DiscoverScreen>
 
     return Scaffold(
       backgroundColor: AppColors.background,
-      appBar: AppBarDiscover(),
+      appBar: const AppBarDiscover(),
       body: Stack(
         children: [
           // Animated background
@@ -134,7 +134,7 @@ class _DiscoverScreenState extends State<DiscoverScreen>
                       child: Transform.scale(
                         scale: 0.8 + (0.2 * _bannerAnimation.value),
                         child: Opacity(
-                          opacity: _bannerAnimation.value,
+                          opacity: _bannerAnimation.value.clamp(0.0, 1.0),
                           child: _buildAnimatedBanner(width, height),
                         ),
                       ),
@@ -443,7 +443,7 @@ class _DiscoverScreenState extends State<DiscoverScreen>
                       return Transform.scale(
                         scale: value,
                         child: Container(
-                          margin: EdgeInsets.only(right: 12),
+                          margin: const EdgeInsets.only(right: 12),
                           child: Material(
                             color: Colors.transparent,
                             child: InkWell(
@@ -456,18 +456,18 @@ class _DiscoverScreenState extends State<DiscoverScreen>
                               },
                               child: AnimatedContainer(
                                 duration: const Duration(milliseconds: 300),
-                                padding: EdgeInsets.symmetric(
+                                padding: const EdgeInsets.symmetric(
                                     horizontal: 20, vertical: 12),
                                 decoration: BoxDecoration(
                                   gradient: isSelected
-                                      ? LinearGradient(colors: [
+                                      ? const LinearGradient(colors: [
                                           AppColors.purple,
                                           Colors.pinkAccent
                                         ])
                                       : null,
                                   color:
                                       isSelected ? null : Colors.grey.shade200,
-                                  borderRadius: BorderRadius.circular(25),
+                                  borderRadius: BorderRadius.circular(20),
                                   boxShadow: isSelected
                                       ? [
                                           BoxShadow(
